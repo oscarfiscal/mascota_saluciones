@@ -7,6 +7,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Login as LoginRequest;
 use App\Http\Resources\Login as LoginResource;
+use App\Http\Requests\Register as RegisterRequest;
+use App\Http\Resources\Register as RegisterResource;
+
 
 
 class UserController extends Controller
@@ -34,4 +37,18 @@ public function login(LoginRequest $request)
     return response()->json(new LoginResource($accessToken), 200);
 
 }
+
+/*** Este método registra nuevos usuarios.
+      * @oscar fiscal
+     */
+
+    public function register(RegisterRequest $request): \Illuminate\Http\JsonResponse
+    {
+        $user = User::create(['name' => $request['name'],
+            'email' => $request['email'],
+            'password' => bcrypt($request['password'])
+        ]);
+
+        return response()->json(new RegisterResource($user), 201);
+    }
 }
