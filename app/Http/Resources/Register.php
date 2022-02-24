@@ -18,7 +18,6 @@ class Register extends JsonResource
         return [
             'user'  => $this->resource->email,
             'access_token' => $acces,
-            'rol'=>$this->roles,
             'message' => 'Registro Exitoso'
         ];
     }
