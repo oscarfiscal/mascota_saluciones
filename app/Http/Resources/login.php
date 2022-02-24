@@ -17,7 +17,6 @@ class login extends JsonResource
         return [
             "status"=>"ok",
             "user" => auth()->user()->id,
-            "rol" => auth()->user()->roles,
             "access_token" => $this->resource,
             "message" => "Successful login"
         ];

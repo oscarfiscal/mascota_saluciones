@@ -37,4 +37,20 @@ class LoginControllerTest extends TestCase
 
         $this->assertAuthenticated();
     }
+    
+    public function testNewUsers()
+    {
+        $this->postJson('api/register', $this->dataUser())
+            ->assertStatus(201);
+    }
+
+    private function dataUser(): array
+    {
+        return [
+            "name" => "Oscar fiscal",
+            "email" => "oscar@example.com",
+            "password" => "demo12345",
+            "password_confirmation" => "demo12345",
+        ];
+    }
 }
